@@ -1,0 +1,15 @@
+<nav
+  class="w-screen bg-black-1 shadow-lg py-4 px-8 flex justify-between items-center fixed top-0 z-20 border-b-2 border-purple-1"
+>
+  <div class="">
+    <a routerLink="/" class="text-purple-1 text-2xl font-bold">BlogFire</a>
+  </div>
+  <div class="flex gap-6 py-2">
+    <a
+      class="nav-link"
+      *ngFor="let link of links"
+      routerLink="{{ link.url }}"
+      >{{ link.name }}</a
+    >
+  </div>
+</nav>

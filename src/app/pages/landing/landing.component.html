@@ -1,0 +1,49 @@
+<div class="h-screen w-full">
+    <div class="flex flex-col items-center justify-end h-[65vh]">
+      <div class="w-[85%]">
+        <h1 class="text-white text-4xl text-center mb-14">
+          Welcome to BlogFire🚀🚀🚀🚀
+        </h1>
+      </div>
+      <div class="w-[85%] h-[35vh]">
+        <div class="flex h-full bg-black-3 rounded-lg">
+          <div class="w-[40%] py-4 px-7">
+            <p class="text-purple-1 text-lg">Lorem</p>
+            <h1 class="mt-4 text-xl text-grey-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Blanditiis, dolore aliquid
+            </h1>
+            <p class="mt-4 text-lg text-grey-1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
+              excepturi culpa dolor harum dignissimos cupiditate.
+            </p>
+          </div>
+          <div class="w-[60%] h-full">
+            <img
+              class="object-cover h-full w-full -z-10 rounded-r-lg"
+              src="/assets/candle.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-20 w-[85%] mx-auto">
+      <h1 class="text-white text-2xl mb-4">Subscribe on:</h1>
+      <div
+        class="w-full h-32 flex gap-7 items-center rounded-lg bg-black-3 px-6"
+      >
+        <div
+          class="flex gap-2 items-center group hover:cursor-pointer"
+          *ngFor="let sub of SubscriptionPlatforms"
+        >
+          <div
+            class="w-9 h-9 border-[.25px] border-white rounded-full grid place-content-center text-white group-hover:bg-purple-1 transition-all duration-100"
+          >
+            {{ sub.id }}
+          </div>
+          <p class="text-white text-lg">{{ sub.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
