@@ -8,7 +8,7 @@ import {
   user,
 } from '@angular/fire/auth';
 import { from, Observable } from 'rxjs';
-import { UserInfo } from '../../models';
+import { CurrentUser } from '../../models';
 
 @Injectable({
   providedIn: 'root',
@@ -39,19 +39,38 @@ export class AuthService {
     return from(promise);
   }
 
-  login(email: string, password: string): Observable<User> {
-    return from(
-      signInWithEmailAndPassword(this.firebaseAuth, email, password).then(
-        (cred) => cred.user
-      )
-    );
+  login(email: string, password: string): Observable<any> {
+    const promise = signInWithEmailAndPassword(
+      this.firebaseAuth,
+      email,
+      password
+    ).then((user) => {});
+
+    return from(promise);
   }
 
-  isUserLoggedIn(): boolean {
-    return !!this.firebaseAuth.currentUser;
+  isUserLoggedIn(): CurrentUser | null {
+    return this.user$.subscribe((user: User) => {
+      if (user) {
+        console.log(user);
+        this.currentUserSignal.set({
+          name: user.displayName!,
+          email: user.email!,
+          uid: user.uid,
+        });
+      } else {
+        return null;
+      }
+      console.log('value', this.currentUserSignal());
+      return this.currentUserSignal();
+    });
   }
 
   logout(): Observable<void> {
     return from(this.firebaseAuth.signOut());
+  }
+
+  getCurrentUser(): Observable<User | null> {
+    return this.user$;
   }
 }

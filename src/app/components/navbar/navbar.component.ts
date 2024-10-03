@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { UserInfo } from '../../models';
+import { CurrentUser, UserInfo } from '../../models';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
 
@@ -10,11 +10,12 @@ import { User } from 'firebase/auth';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
-  isAuthenticated = false;
+  isAuthenticated!: boolean;
+  currentUser!: CurrentUser | null;
   links: { name: string; url: string }[] = [
     {
       name: 'Home',
-      url: '/',
+      url: '/home',
     },
     {
       name: 'Blogs',
@@ -27,16 +28,17 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.auth.user$.subscribe((user: User) => {
       if (user) {
-        this.isAuthenticated = true;
         this.auth.currentUserSignal.set({
           name: user.displayName!,
           email: user.email!,
           uid: user.uid,
         });
+
+        this.currentUser = this.auth.currentUserSignal();
+        this.isAuthenticated = true;
       } else {
         this.isAuthenticated = false;
       }
-      console.log(this.auth.currentUserSignal());
     });
   }
 

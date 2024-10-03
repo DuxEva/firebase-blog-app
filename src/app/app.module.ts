@@ -26,6 +26,8 @@ import { BlogsCardComponent } from './components/blogs-card/blogs-card.component
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SingleBlogComponent } from './pages/single-blog/single-blog.component';
+import { LoaderComponent } from './pages/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     BlogsComponent,
     BlogsCardComponent,
+    SingleBlogComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

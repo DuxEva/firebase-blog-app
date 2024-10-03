@@ -13,6 +13,12 @@ export interface BlogResponse {
   user_id?: string;
 }
 
+export interface CurrentUser {
+  name: string;
+  email: string;
+  uid: string;
+}
+
 export interface UserInfo {
   email: string;
   password: string;

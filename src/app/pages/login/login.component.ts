@@ -33,8 +33,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe({
-        next: (data) => {
-          console.log('User logged in successfully', data);
+        next: () => {
           this.isLoader = false;
           this.toastr.success('User logged in successfully', 'Success');
           this.router.navigate(['/blogs']);
@@ -46,7 +45,6 @@ export class LoginComponent {
       });
     } else {
       this.loginForm.markAllAsTouched();
-      console.log('Form is invalid');
     }
   }
 }

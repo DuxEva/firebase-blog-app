@@ -11,16 +11,14 @@
       />
     </div>
     <div class="py-5 px-3">
-      <a
-        href="#"
+      <p
         class="block text-lg text-purple-1 leading-tight font-medium text-black hover:underline"
-        >{{ blog.title }}</a
       >
-      <p class="mt-2 text-gray-500">
-        {{ blog.content.slice(0, 80) }}...
-        <a class="ml-3 text-purple-1" routerLink="/blogs/{{ blog.id }}">
-          reade more</a
-        >
+        {{ blog.title }}
+      </p>
+      <p class="mt-2 text-gray-500">{{ blog.content.slice(0, 80) }}...</p>
+      <p class="ml-3 text-purple-1" routerLink="/blogs/{{ blog.id }}">
+        read more
       </p>
     </div>
   </div>
