@@ -13,23 +13,22 @@ export class BlogFormComponent {
 
   constructor(private fb: FormBuilder, private blogService: BlogService) {
     this.blogForm = this.fb.group({
+      image: ['', Validators.required],
       title: ['', Validators.required],
       content: ['', Validators.required],
     });
   }
 
   onSubmit() {
+    console.log('Form value', this.blogForm.value);
     if (this.blogForm.valid) {
       const blog: Blog = {
         title: this.blogForm.value.title,
         content: this.blogForm.value.content,
-        key: '',
+        image: this.blogForm.value.image,
       };
 
-      this.blogService.createBlog(blog).then((data: Blog) => {
-        console.log('Blog created successfully', data);
-        this.blogForm.reset();
-      });
+      console.log('Form is valid', blog);
     } else {
       this.blogForm.markAllAsTouched();
       console.log('Form is invalid');

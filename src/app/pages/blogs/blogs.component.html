@@ -1,0 +1,16 @@
+@if (isLoading) {
+<div class="h-screen w-screen flex items-center justify-center">
+  <div class="loader"></div>
+</div>
+
+}@else {
+<div class="mt-20">
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <!-- making sure that data are being displayed -->
+    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
+    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
+    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
+    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
+  </div>
+</div>
+}

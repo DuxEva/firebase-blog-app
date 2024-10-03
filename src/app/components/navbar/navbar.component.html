@@ -11,5 +11,10 @@
       routerLink="{{ link.url }}"
       >{{ link.name }}</a
     >
+    @if (isAuthenticated) {
+    <button class="nav-link" (click)="logout()">Logout</button>
+    }@else{
+    <a class="nav-link" routerLink="/login">Login</a>
+    }
   </div>
 </nav>
