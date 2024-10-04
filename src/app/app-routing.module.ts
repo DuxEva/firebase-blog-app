@@ -5,7 +5,7 @@ import { BlogFormComponent } from './components/blog-form/blog-form.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BlogsComponent } from './pages/blogs/blogs.component';
-import { AuthGuard } from './pages/Guards/guard.guard';
+import { AuthGuard } from './Guards/guard.guard';
 import { SingleBlogComponent } from './pages/single-blog/single-blog.component';
 
 const routes: Routes = [

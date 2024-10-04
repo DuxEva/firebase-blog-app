@@ -53,28 +53,23 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    this.isLoading = true;
     if (this.signUpForm.valid) {
+      this.isLoading = true;
       const { email, password, name } = this.signUpForm.value;
 
       this.authService.signUp(email, password, name).subscribe({
         next: (data: User) => {
-          console.log('User signed up successfully', data);
           this.toastr.success('User signed up successfully', 'Success');
           this.router.navigate(['/login']);
           this.isLoading = false;
         },
         error: (error) => {
           this.toastr.error(`${error.code}`, 'Error');
-          console.error('Error signing up', error.code);
           this.isLoading = false;
         },
       });
-
-      console.log('Form is valid');
     } else {
       this.signUpForm.markAllAsTouched();
-      console.log('Form is invalid');
       console.log(this.signUpForm.value);
       this.isLoading = false;
     }

@@ -2,7 +2,7 @@ export interface Blog {
   image?: string;
   title: string;
   content: string;
-  user_id?: string;
+  user_id: string;
 }
 
 export interface BlogResponse {
@@ -10,7 +10,7 @@ export interface BlogResponse {
   image?: string;
   title: string;
   content: string;
-  user_id?: string;
+  user_id: string;
 }
 
 export interface CurrentUser {
