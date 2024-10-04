@@ -29,8 +29,8 @@ export class LoginComponent {
   private authService = inject(AuthService);
 
   onSubmit() {
-    this.isLoader = true;
     if (this.loginForm.valid) {
+      this.isLoader = true;
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe({
         next: () => {

@@ -79,6 +79,11 @@
       <button
         type="submit"
         class="w-full bg-purple-1 text-grey-2 p-3 rounded-lg font-semibold hover:bg-purple-2 transition duration-300"
+        [disabled]="isActionLoading"
+        [ngClass]="{
+          'cursor-not-allowed': isActionLoading,
+          'cursor-pointer': !isActionLoading
+        }"
       >
         Create Blog
       </button>
