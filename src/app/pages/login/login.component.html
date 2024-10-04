@@ -1,0 +1,105 @@
+<main class="w-full h-screen flex flex-col gap-12 justify-center items-center">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="bg-dark p-6 rounded-2xl"
+  >
+    <h2 class="text-2xl">Login</h2>
+
+    <!-- Email Input Field -->
+    <div
+      class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group"
+    >
+      <label
+        class="transition-all duration-300 text-grey-2"
+        [ngClass]="
+          isInputFocused || loginForm.get('email')?.touched
+            ? 'translate-y-0'
+            : 'translate-y-8'
+        "
+      >
+        Email
+      </label>
+      <input
+        type="email"
+        formControlName="email"
+        class="text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="
+          loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+            ? 'border-b-red'
+            : 'border-b'
+        "
+        (focus)="isInputFocused = true"
+        (blur)="isInputFocused = false"
+      />
+      <div
+        *ngIf="
+          loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+        "
+        class="text-red-2 w-full -mt-10 text-sm text-end z-10"
+      >
+        Please enter a valid email.
+      </div>
+    </div>
+
+    <!-- Password Input Field -->
+    <div
+      class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group"
+    >
+      <label
+        class="transition-all duration-300 text-grey-2"
+        [ngClass]="
+          isPasswordFocused || loginForm.get('password')?.touched
+            ? 'translate-y-0'
+            : 'translate-y-8'
+        "
+      >
+        Password
+      </label>
+      <input
+        type="password"
+        formControlName="password"
+        class="text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="
+          loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched
+            ? 'border-b-red'
+            : 'border-b'
+        "
+        (focus)="isPasswordFocused = true"
+        (blur)="isPasswordFocused = false"
+      />
+      <div
+        *ngIf="
+          loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched
+        "
+        class="text-red-2 w-full -mt-10 text-sm text-end z-10"
+      >
+        Password cannot be empty.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      class="w-full p-3 bg-grey-2 text-lg items-center mt-8 rounded-lg transition-all duration-300"
+      type="submit"
+      [disabled]="isLoader"
+      [ngClass]="{
+        'cursor-not-allowed': isLoader,
+        'cursor-pointer': !isLoader
+      }"
+    >
+      {{ isLoader ? "Loading..." : "Login to your account" }}
+    </button>
+
+    <p class="w-full flex justify-center gap-2 py-6 text-grey-2">
+      Don’t have an account?
+      <a
+        class="text-red cursor-pointer text-purple-1 text-lg"
+        routerLink="/signup"
+        >Sign Up</a
+      >
+    </p>
+  </form>
+</main>

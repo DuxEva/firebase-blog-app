@@ -1,7 +1,7 @@
 <nav
   class="w-screen bg-black-1 shadow-lg py-4 px-8 flex justify-between items-center fixed top-0 z-20 border-b-2 border-purple-1"
 >
-  <div class="">
+  <div>
     <a routerLink="/" class="text-purple-1 text-2xl font-bold">BlogFire</a>
   </div>
   <div class="flex gap-6 py-2">
@@ -11,5 +11,12 @@
       routerLink="{{ link.url }}"
       >{{ link.name }}</a
     >
+    <a class="nav-link" *ngIf="isAuthenticated" routerLink="/blogs/create"
+      >Create Blog</a
+    >
+    <button class="nav-link" *ngIf="isAuthenticated" (click)="logout()">
+      Logout
+    </button>
+    <a class="nav-link" *ngIf="!isAuthenticated" routerLink="/login">Login</a>
   </div>
 </nav>

@@ -1,0 +1,195 @@
+<main class="w-full h-screen flex flex-col gap-12 justify-center items-center">
+  <form
+    [formGroup]="signUpForm"
+    (ngSubmit)="onSubmit()"
+    class="bg-black-1 p-6 rounded-2xl"
+  >
+    <h2 class="text-2xl text-grey-2">Sign up</h2>
+
+    <!-- User Name Input Field -->
+    <div
+      class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group"
+    >
+      <label
+        class="transition-all duration-300 text-grey-2"
+        for="name"
+        [ngClass]="
+          isNameFocused ||
+          (signUpForm.get('name')?.value?.length > 0 &&
+            signUpForm.get('name')?.touched)
+            ? 'translate-y-0'
+            : 'translate-y-8'
+        "
+      >
+        User Name
+      </label>
+      <input
+        type="name"
+        formControlName="name"
+        class="text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="
+          signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched
+            ? 'border-b-red'
+            : 'border-b'
+        "
+        (focus)="isNameFocused = true"
+        (blur)="isNameFocused = false"
+      />
+      <div
+        *ngIf="
+          signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched
+        "
+        class="text-red-2 w-full -mt-10 text-sm text-end z-10"
+      >
+        Name is required
+      </div>
+    </div>
+
+    <!-- Email Input Field -->
+    <div
+      class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group"
+    >
+      <label
+        class="transition-all duration-300 text-grey-2"
+        for="email"
+        [ngClass]="
+          isEmailFocused ||
+          (signUpForm.get('email')?.value?.length > 0 &&
+            signUpForm.get('email')?.touched)
+            ? 'translate-y-0'
+            : 'translate-y-8'
+        "
+      >
+        Email
+      </label>
+      <input
+        type="email"
+        formControlName="email"
+        class="text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="
+          signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched
+            ? 'border-b-red'
+            : 'border-b'
+        "
+        (focus)="isEmailFocused = true"
+        (blur)="isEmailFocused = false"
+      />
+      <div
+        *ngIf="
+          signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched
+        "
+        class="text-red-2 w-full -mt-10 text-sm text-end z-10"
+      >
+        Invalid email
+      </div>
+    </div>
+
+    <!-- Password Input Field -->
+    <div
+      class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group"
+    >
+      <label
+        class="transition-all duration-300 text-grey-2"
+        [ngClass]="
+          isPasswordFocused ||
+          (signUpForm.get('password')?.value?.length > 0 &&
+            signUpForm.get('password')?.touched)
+            ? 'translate-y-0'
+            : 'translate-y-8'
+        "
+      >
+        Password
+      </label>
+      <input
+        type="password"
+        formControlName="password"
+        class="text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="
+          signUpForm.get('password')?.invalid &&
+          signUpForm.get('password')?.touched
+            ? 'border-b-red'
+            : 'border-b'
+        "
+        (focus)="isPasswordFocused = true"
+        (blur)="isPasswordFocused = false"
+      />
+      <div
+        *ngIf="
+          signUpForm.get('password')?.invalid &&
+          signUpForm.get('password')?.touched
+        "
+        class="text-red-2 w-full -mt-10 text-sm text-end z-10"
+      >
+        Can't be empty
+      </div>
+    </div>
+
+    <!-- Repeat Password Input Field -->
+    <div
+      class="w-full flex flex-col gap-2 justify-start items-start h-16 mt-2 group"
+    >
+      <label
+        class="transition-all duration-300 text-grey-2"
+        [ngClass]="
+          isPassword2Focused ||
+          (signUpForm.get('password')?.value?.length > 0 &&
+            signUpForm.get('password')?.touched)
+            ? 'translate-y-0'
+            : 'translate-y-8'
+        "
+      >
+        Repeat Password
+      </label>
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        class="text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-12 !bg-transparent border-b-2 border-x-none outline-none relative z-20"
+        [ngClass]="
+          signUpForm.get('password')?.invalid &&
+          signUpForm.get('password')?.touched
+            ? 'border-b-red'
+            : 'border-b'
+        "
+        (focus)="isPassword2Focused = true"
+        (blur)="isPassword2Focused = false"
+      />
+      <div
+        *ngIf="signUpForm.errors?.['passwordsMismatch']"
+        class="text-red-2 w-full -mt-10 text-sm text-end z-10"
+      >
+        Passwords do not match
+      </div>
+
+      <div
+        *ngIf="
+          signUpForm.get('confirmPassword')?.invalid &&
+          signUpForm.get('confirmPassword')?.touched
+        "
+        class="text-red-2 w-full -mt-10 text-sm text-end z-10"
+      >
+        Can't be empty
+      </div>
+    </div>
+
+    <button
+      class="w-full p-3 items-center mt-8 rounded-lg bg-grey-2 text-lg"
+      type="submit"
+      [disabled]="isLoading"
+      [ngClass]="{
+        'cursor-not-allowed': isLoading,
+        'cursor-pointer': !isLoading
+      }"
+    >
+      {{ isLoading ? "Loading..." : "Create an account" }}
+    </button>
+
+    <p class="w-full flex justify-center gap-2 py-6 text-grey-2">
+      Already have an account?
+      <a
+        class="text-red cursor-pointer text-purple-1 text-lg"
+        routerLink="/login"
+        >Login</a
+      >
+    </p>
+  </form>
+</main>

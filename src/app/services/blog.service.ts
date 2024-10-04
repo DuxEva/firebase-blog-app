@@ -1,39 +1,63 @@
 import { Injectable } from '@angular/core';
 
 import {
-  AngularFireDatabase,
-  AngularFireList,
-} from '@angular/fire/compat/database';
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  Firestore,
+  collectionData,
+  DocumentReference,
+  DocumentData,
+  docData,
+} from '@angular/fire/firestore';
+import { Blog, BlogResponse } from '../models';
+import { from, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  private dbPath = '/blogs';
+  private dbPath = 'blogs';
 
-  blogRef: AngularFireList<any> | undefined;
+  constructor(private firestore: Firestore) {}
 
-  constructor(private db: AngularFireDatabase) {
-    this.blogRef = db.list(this.dbPath);
+  // Get all blogs
+  getAllBlogs(): Observable<BlogResponse[]> {
+    const blogsCollection = collection(this.firestore, this.dbPath);
+    return collectionData(blogsCollection, { idField: 'id' }).pipe(
+      map((blogs) => {
+        return blogs;
+      })
+    );
   }
 
-  getAllBlogs(): AngularFireList<any> {
-    return this.blogRef!;
+  // Create a new blog
+  createBlog(blog: Blog): Observable<DocumentReference<DocumentData>> {
+    const promise = addDoc(collection(this.firestore, this.dbPath), blog);
+    return from(promise);
   }
 
-  createBlog(blog: any): any {
-    return this.blogRef!.push(blog);
+  // Get a blog by ID
+  getBlogById(id: string): Observable<BlogResponse> {
+    const blogDoc = doc(this.firestore, `${this.dbPath}/${id}`);
+    return docData(blogDoc, { idField: 'id' }) as Observable<BlogResponse>;
   }
 
-  updateBlog(key: string, value: any): Promise<void> {
-    return this.blogRef!.update(key, value);
+  // Update an existing blog by ID
+  updateBlog(id: string, blog: Partial<Blog>): Observable<void> {
+    const blogDoc = doc(this.firestore, `${this.dbPath}/${id}`);
+    const promise = updateDoc(blogDoc, { ...blog });
+    return from(promise);
   }
 
-  deleteBlog(key: string): Promise<void> {
-    return this.blogRef!.remove(key);
-  }
-
-  getBlog(key: string): Promise<any> {
-    return this.blogRef!.query.equalTo(key).once('value');
+  // Delete a blog by ID
+  deleteBlog(id: string): Observable<void> {
+    const blogDoc = doc(this.firestore, `${this.dbPath}/${id}`);
+    const promise = deleteDoc(blogDoc);
+    return from(promise);
   }
 }

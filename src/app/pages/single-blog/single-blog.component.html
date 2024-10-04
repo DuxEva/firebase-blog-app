@@ -1,0 +1,36 @@
+<div *ngIf="blog" class="container mx-auto px-4 py-12">
+  <!-- Blog Header -->
+  <div class="mb-6">
+    <h1 class="text-4xl font-bold text-purple-1 mb-4">
+      <span class="mr-3">Title:</span>{{ blog.title }}
+    </h1>
+    <!-- <p class="text-sm text-gray-600">
+      Posted by <span class="font-semibold">User ID: {{ blog.user_id }}</span>
+    </p> -->
+  </div>
+
+  <!-- Blog Image -->
+  <div class="mb-6">
+    <img
+      [src]="blog.image"
+      [alt]="blog.title"
+      class="w-full h-auto rounded-lg shadow-md"
+    />
+  </div>
+
+  <!-- Blog Content -->
+  <div class="prose text-lg max-w-none mb-12 text-gray-500 reading">
+    <p>{{ blog.content }}</p>
+  </div>
+
+  <div class="border-t pt-6">
+    <div class="flex items-center">
+      <div class="ml-4">
+        <p class="text-xl font-semibold text-grey-3">Thank you!! 🚀</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<app-loader *ngIf="!blog" />
