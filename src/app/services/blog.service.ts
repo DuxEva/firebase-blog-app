@@ -14,7 +14,7 @@ import {
   DocumentData,
   docData,
 } from '@angular/fire/firestore';
-import { Blog, BlogResponse } from '../models';
+import { Blog, BlogResponse, Comment } from '../models';
 import { from, map, Observable } from 'rxjs';
 
 @Injectable({
@@ -58,6 +58,19 @@ export class BlogService {
   deleteBlog(id: string): Observable<void> {
     const blogDoc = doc(this.firestore, `${this.dbPath}/${id}`);
     const promise = deleteDoc(blogDoc);
+    return from(promise);
+  }
+
+  addComment(id: string, { comment, username }: Comment): Observable<void> {
+    const blogDoc = doc(this.firestore, `${this.dbPath}/${id}`);
+    const promise = getDoc(blogDoc).then((doc) => {
+      if (doc.exists()) {
+        const blog = doc.data() as Blog;
+        blog.comments.push({ comment, username });
+        updateDoc(blogDoc, { ...blog });
+      }
+    });
+
     return from(promise);
   }
 }

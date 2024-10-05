@@ -50,15 +50,14 @@ export class ProfileComponent {
     this.blogService.getAllBlogs().subscribe((data: BlogResponse[]) => {
       this.data =
         data.filter((blog) => blog.userEmail === this.currentUser.email) || [];
-      this.isLoading = false;
-    });
-  }
 
-  getAllComments() {
-    this.data.forEach((blog) => {
-      blog?.comments?.forEach((comment) => {
-        this.comments.push(comment);
+      this.data.forEach((blog) => {
+        blog?.comments?.forEach((comment) => {
+          this.comments.push(comment);
+        });
       });
+
+      this.isLoading = false;
     });
   }
 

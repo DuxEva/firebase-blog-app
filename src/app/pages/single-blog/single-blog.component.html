@@ -4,9 +4,6 @@
     <h1 class="text-4xl font-bold text-purple-1 mb-4">
       <span class="mr-3">Title:</span>{{ blog.title }}
     </h1>
-    <!-- <p class="text-sm text-gray-600">
-      Posted by <span class="font-semibold">User ID: {{ blog.userId }}</span>
-    </p> -->
   </div>
 
   <!-- Blog Image -->
@@ -25,14 +22,61 @@
 
   <div class="border-t pt-6 border-purple-1">
     <div class="flex items-center">
-      <div class="ml-4">
+      <div>
         <p class="font-semibold text-grey-3">
           Author: <strong class="ml-1 text-xl">{{ blog.userName }}</strong>
         </p>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Loading State -->
-<app-loader *ngIf="!blog" />
+    <div class="mt-5">
+      <!-- Form wrapped with formGroup directive -->
+      <form [formGroup]="commentForm" class="mt-3" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="comment" class="block text-grey-2 font-semibold mb-2"
+            >Comment</label
+          >
+          <textarea
+            id="comment"
+            formControlName="comment"
+            class="w-full p-3 bg-black-2 text-grey-2 rounded-lg outline-none"
+            placeholder="Enter your comment"
+          ></textarea>
+
+          <!-- Error handling for the form field -->
+          <div
+            *ngIf="
+              commentForm.controls['comment'].invalid &&
+              commentForm.controls['comment'].touched
+            "
+            class="text-red-1 text-sm mt-1"
+          >
+            <small *ngIf="commentForm.controls['comment'].errors?.['required']"
+              >Comment is required.</small
+            >
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="bg-purple-1 hover:bg-purple-2 text-grey-2 py-2 px-4 rounded-md"
+        >
+          Add Comment
+        </button>
+      </form>
+      <p class="text-grey-2 mt-4 text-xl">Comments</p>
+      <div class="mt-3">
+        <div
+          *ngFor="let comment of blog.comments"
+          class="bg-black-3 p-3 rounded-lg mb-3"
+        >
+          <p class="text-purple-1 font-semibold">{{ comment.username }}</p>
+          <p class="text-grey-2">{{ comment.comment }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <app-loader *ngIf="!blog" />
+</div>

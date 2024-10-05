@@ -5,7 +5,7 @@ export interface Blog {
   userId: string;
   userName: string;
   userEmail: string;
-  comments?: Comment[];
+  comments: Comment[];
 }
 
 export interface BlogResponse {
@@ -16,7 +16,7 @@ export interface BlogResponse {
   userId: string;
   userName: string;
   userEmail: string;
-  comments?: Comment[];
+  comments: Comment[];
 }
 
 export interface CurrentUser {
