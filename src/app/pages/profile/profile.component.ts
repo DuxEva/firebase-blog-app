@@ -43,7 +43,7 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.isLoaded = true;
-    this.getAllBlogs();
+    this.getCurrentUserBlogs();
     this.auth.user$.subscribe((user: User) => {
       if (user) {
         this.auth.currentUserSignal.set({
@@ -57,7 +57,6 @@ export class ProfileComponent {
           this.currentUser = currentUser;
           this.isLoaded = false;
         }
-        console.log('Current user from profile', this.currentUser);
       } else {
         this.isLoaded = false;
         return;
@@ -65,9 +64,10 @@ export class ProfileComponent {
     });
   }
 
-  getAllBlogs() {
+  getCurrentUserBlogs() {
     this.blogService.getAllBlogs().subscribe((data: BlogResponse[]) => {
-      this.data = data || [];
+      this.data =
+        data.filter((blog) => blog.userEmail === this.currentUser.email) || [];
       this.isLoading = false;
     });
   }
