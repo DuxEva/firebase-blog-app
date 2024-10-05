@@ -1,0 +1,62 @@
+@if (!data) {
+<app-loader />
+}@else {
+<div class="max-w-6xl mx-auto p-6 pt-28">
+  <!-- User Info Section -->
+  <section class="mb-6 text-grey-2">
+    <h3 class="text-4xl font-semibold mb-4">Personal Information</h3>
+    <div class="grid grid-cols-1 gap-4">
+      <p><strong class="mr-1">Name:</strong> {{ currentUser.name }}</p>
+      <p><strong class="mr-1">Email:</strong> {{ currentUser.email }}</p>
+    </div>
+  </section>
+
+  <!-- User Stats Section -->
+  <section class="flex space-x-4 mb-6">
+    <div class="bg-gray-100 p-4 rounded text-center flex-1">
+      <h4 class="text-xl font-bold">{{ user.postsCount }}</h4>
+      <p class="text-gray-500">Posts</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded text-center flex-1">
+      <h4 class="text-xl font-bold">{{ user.likesCount }}</h4>
+      <p class="text-gray-500">Likes</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded text-center flex-1">
+      <h4 class="text-xl font-bold">{{ user.commentsCount }}</h4>
+      <p class="text-gray-500">Comments</p>
+    </div>
+  </section>
+
+  <!-- Recent Activity Section -->
+  <section class="">
+    <h3 class="text-xl text-grey-2 font-semibold mb-4">
+      {{ data.length ? "Recent Activity" : "No Recent Activity" }}
+    </h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+      <!-- making sure that data are being displayed -->
+      <app-blogs-card
+        *ngFor="let blog of data"
+        [blog]="blog"
+        [isDashboard]="true"
+      ></app-blogs-card>
+      <app-blogs-card
+        *ngFor="let blog of data"
+        [blog]="blog"
+        [isDashboard]="true"
+      ></app-blogs-card>
+      <app-blogs-card
+        *ngFor="let blog of data"
+        [blog]="blog"
+        [isDashboard]="true"
+      ></app-blogs-card>
+      <app-blogs-card
+        *ngFor="let blog of data"
+        [blog]="blog"
+        [isDashboard]="true"
+      ></app-blogs-card>
+    </div>
+  </section>
+</div>
+
+}

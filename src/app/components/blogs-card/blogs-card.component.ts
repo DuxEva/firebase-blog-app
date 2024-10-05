@@ -10,7 +10,7 @@ import { BlogService } from '../../services/blog.service';
 })
 export class BlogsCardComponent {
   @Input() blog!: BlogResponse;
-  @Input() isDashboard!: boolean
+  @Input() isDashboard!: boolean;
 
   constructor(private router: Router, private blogService: BlogService) {}
 
@@ -19,9 +19,11 @@ export class BlogsCardComponent {
   }
 
   goToUpdateBlog(id: string) {
-    this.blogService.updateBlog(id, this.blog).subscribe((data) => {
-      console.log('Update blog', data);
-    });
+    // this.blogService.updateBlog(id, this.blog).subscribe((data) => {
+    //   console.log('Update blog', data);
+    // });
+
+    this.router.navigate(['blogs/edit/', id]);
   }
 
   deleteBlog(id: string) {

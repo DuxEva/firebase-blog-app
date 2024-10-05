@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { CurrentUser, UserInfo } from '../../models';
+import { CurrentUser } from '../../models';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
 

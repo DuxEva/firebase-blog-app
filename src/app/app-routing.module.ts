@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { AuthGuard } from './Guards/guard.guard';
 import { SingleBlogComponent } from './pages/single-blog/single-blog.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -20,9 +21,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'blogs/:id',
-    component: SingleBlogComponent,
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
   },
+  {
+    path: 'blogs/edit/:id',
+    component: BlogFormComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'blogs/:id', component: SingleBlogComponent },
 ];
 
 @NgModule({

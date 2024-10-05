@@ -31,4 +31,9 @@ export class SidebarComponent {
     this.isSidebarOpen = false;
     this.router.navigate(['/login']);
   }
+
+  openProfile() {
+    this.router.navigate(['/profile']);
+    this.isSidebarOpen = false;
+  }
 }

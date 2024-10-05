@@ -5,6 +5,7 @@ export interface Blog {
   userId: string;
   userName: string;
   userEmail: string;
+  comments?: Comment[];
 }
 
 export interface BlogResponse {
@@ -27,4 +28,9 @@ export interface UserInfo {
   email: string;
   password: string;
   name: string;
+}
+
+export interface Comment {
+  username: string;
+  comment: string;
 }

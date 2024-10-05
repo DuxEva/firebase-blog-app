@@ -85,7 +85,9 @@
           'cursor-pointer': !isActionLoading
         }"
       >
-        Create Blog
+        {{
+          isActionLoading ? "Loading..." : urlId ? "Update Blog" : "Create Blog"
+        }}
       </button>
     </form>
   </div>

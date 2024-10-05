@@ -18,10 +18,8 @@ export class SingleBlogComponent {
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      console.log('ID', id);
       if (id) {
         this.blogService.getBlogById(id).subscribe((data) => {
-          console.log('Blog', data);
           this.blog = data;
         });
       }

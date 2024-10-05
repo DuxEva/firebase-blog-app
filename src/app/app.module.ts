@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleBlogComponent } from './pages/single-blog/single-blog.component';
 import { LoaderComponent } from './pages/loader/loader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SingleBlogComponent,
     LoaderComponent,
     SidebarComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
