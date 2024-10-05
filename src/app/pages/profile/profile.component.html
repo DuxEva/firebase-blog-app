@@ -31,6 +31,13 @@
     <h3 class="text-xl text-grey-2 font-semibold mb-4">
       {{ data.length ? "Recent Activity" : "No Recent Activity" }}
     </h3>
+    <button>
+      <a
+        class="text-purple-1 bg-grey-2 hover:bg-grey-3 transition-all duration-100 py-2 px-4 rounded-md"
+        routerLink="/blogs/create"
+        >Create a Blog</a
+      >
+    </button>
 
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
       <!-- making sure that data are being displayed -->
