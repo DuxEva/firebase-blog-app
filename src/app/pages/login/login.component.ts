@@ -56,7 +56,7 @@ export class LoginComponent {
         this.OauthLoader = false;
         this.toastr.success('User signed up successfully', 'Success');
 
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/home');
       },
       error: (error) => {
         this.toastr.error(`${error.code}`, 'Error');
