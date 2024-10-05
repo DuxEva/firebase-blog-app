@@ -2,7 +2,9 @@ export interface Blog {
   image?: string;
   title: string;
   content: string;
-  user_id: string;
+  userId: string;
+  userName: string;
+  userEmail: string;
 }
 
 export interface BlogResponse {
@@ -10,7 +12,9 @@ export interface BlogResponse {
   image?: string;
   title: string;
   content: string;
-  user_id: string;
+  userId: string;
+  userName: string;
+  userEmail: string;
 }
 
 export interface CurrentUser {

@@ -10,8 +10,15 @@
       />
     </div>
     <div class="py-5 px-3">
+      <p class="text-grey-2">
+        Author:
+        <span class="text-purple-1"
+          >{{ blog.userName }}, {{ blog.userEmail }}</span
+        >
+      </p>
+
       <p
-        class="block text-lg text-purple-1 leading-tight font-medium text-black hover:underline"
+        class="block text-xl text-gray-500 leading-tight font-medium text-black hover:underline mt-3"
       >
         {{ blog.title }}
       </p>
@@ -19,16 +26,20 @@
       <p class="ml-3 text-purple-1" routerLink="/blogs/{{ blog.id }}">
         read more
       </p>
+      <div class="flex gap-2 mt-3" [ngClass]="{ hidden: !isDashboard }">
+        <button
+          class="text-grey-2 bg-purple-1 py-2 px-3 rounded-md"
+          (click)="goToUpdateBlog(blog.id)"
+        >
+          Update
+        </button>
+        <button
+          class="text-grey-2 bg-red-1 py-2 px-3 rounded-md"
+          (click)="deleteBlog(blog.id)"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="flex gap-2 mt-3">
-  <button
-    class="text-grey-2 bg-purple-1 py-2 px-3 rounded-md"
-    (click)="goToUpdateBlog(blog.id)"
-  >
-    Update
-  </button>
-  <button class="text-grey-2 bg-red-1 py-2 px-3 rounded-md">Delete</button>
-</div> -->

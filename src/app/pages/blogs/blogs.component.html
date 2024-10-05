@@ -2,13 +2,29 @@
 
 <app-loader />
 }@else {
-<div class="px-10">
+<div class="px-10 pt-24">
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
     <!-- making sure that data are being displayed -->
-    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
-    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
-    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
-    <app-blogs-card *ngFor="let blog of data" [blog]="blog"></app-blogs-card>
+    <app-blogs-card
+      *ngFor="let blog of data"
+      [blog]="blog"
+      [isDashboard]="false"
+    ></app-blogs-card>
+    <app-blogs-card
+      *ngFor="let blog of data"
+      [blog]="blog"
+      [isDashboard]="false"
+    ></app-blogs-card>
+    <app-blogs-card
+      *ngFor="let blog of data"
+      [blog]="blog"
+      [isDashboard]="false"
+    ></app-blogs-card>
+    <app-blogs-card
+      *ngFor="let blog of data"
+      [blog]="blog"
+      [isDashboard]="false"
+    ></app-blogs-card>
   </div>
 </div>
 }

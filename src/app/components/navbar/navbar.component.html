@@ -4,7 +4,7 @@
   <div>
     <a routerLink="/" class="text-purple-1 text-2xl font-bold">BlogFire</a>
   </div>
-  <div class="flex gap-6 py-2">
+  <div class="flex items-center gap-6 py-2">
     <a
       class="nav-link"
       *ngFor="let link of links"
@@ -14,9 +14,24 @@
     <a class="nav-link" *ngIf="isAuthenticated" routerLink="/blogs/create"
       >Create Blog</a
     >
-    <button class="nav-link" *ngIf="isAuthenticated" (click)="logout()">
-      Logout
-    </button>
+    <!-- <button class="nav-link" (click)="logout()">Logout</button> -->
     <a class="nav-link" *ngIf="!isAuthenticated" routerLink="/login">Login</a>
+
+    <!-- AVATAR FOR OPENNING PROFILE -->
+    <div
+      class="w-10 h-10 rounded-full border cursor-pointer"
+      *ngIf="isAuthenticated"
+      (click)="openProfile()"
+    >
+      <img class="w-full h-full" src="/assets/avatar.svg" alt="user-profile" />
+    </div>
   </div>
 </nav>
+
+<app-sidebar
+  *ngIf="isProfileOpen"
+  [ngClass]="{
+    '-translate-x-[100%]': !isProfileOpen,
+    'translate-x-0': isProfileOpen
+  }"
+/>

@@ -10,6 +10,7 @@ import { BlogService } from '../../services/blog.service';
 })
 export class BlogsCardComponent {
   @Input() blog!: BlogResponse;
+  @Input() isDashboard!: boolean
 
   constructor(private router: Router, private blogService: BlogService) {}
 

@@ -12,6 +12,7 @@ import { User } from 'firebase/auth';
 export class NavbarComponent implements OnInit {
   isAuthenticated!: boolean;
   currentUser!: CurrentUser | null;
+  isProfileOpen: boolean = false;
   links: { name: string; url: string }[] = [
     {
       name: 'Home',
@@ -42,9 +43,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.auth.logout();
-    this.isAuthenticated = false;
-    this.router.navigate(['/login']);
+  openProfile() {
+    this.isProfileOpen = !this.isProfileOpen;
   }
 }

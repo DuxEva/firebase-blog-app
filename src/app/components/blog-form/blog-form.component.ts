@@ -42,7 +42,9 @@ export class BlogFormComponent {
         title: this.blogForm.value.title,
         content: this.blogForm.value.content,
         image: this.blogForm.value.image,
-        user_id: this.owner.uid,
+        userId: this.owner.uid,
+        userName: this.owner.name,
+        userEmail: this.owner.email,
       };
       this.blogService.createBlog(blog).subscribe({
         next: (data) => {
