@@ -82,7 +82,7 @@ export class BlogFormComponent implements OnInit {
       userId: this.owner.uid,
       userName: this.owner.name,
       userEmail: this.owner.email,
-      comments: this.comments,
+      comments: this.comments || [],
     };
   }
 
