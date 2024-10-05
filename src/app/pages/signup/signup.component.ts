@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserInfo } from '../../models';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';

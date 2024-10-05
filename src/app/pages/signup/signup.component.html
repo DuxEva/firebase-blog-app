@@ -1,4 +1,4 @@
-<main class="w-full h-screen flex flex-col gap-12 justify-center items-center">
+<main class="w-full h-screen flex flex-col gap-1 justify-center items-center">
   <form
     [formGroup]="signUpForm"
     (ngSubmit)="onSubmit()"
@@ -185,7 +185,7 @@
   </form>
 
   <button
-    class="-mt-7 text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-14 flex justify-center items-center gap-2 border-2 border-grey-2 rounded-lg"
+    class="text-grey-2 w-[80vw] md:w-[50vw] lg:w-[30vw] xl:w-[25vw] h-14 flex justify-center items-center gap-2 border-2 border-grey-2 rounded-lg"
     (click)="signInWithGoogle()"
     [ngClass]="{
       'cursor-not-allowed': OauthLoader,

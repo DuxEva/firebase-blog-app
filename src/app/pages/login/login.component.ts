@@ -14,6 +14,7 @@ export class LoginComponent {
   isInputFocused: boolean = false;
   isPasswordFocused: boolean = false;
   isLoader!: boolean;
+  OauthLoader: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -46,5 +47,21 @@ export class LoginComponent {
     } else {
       this.loginForm.markAllAsTouched();
     }
+  }
+
+  signInWithGoogle(): void {
+    this.OauthLoader = true;
+    this.authService.loginWithGoogle().subscribe({
+      next: () => {
+        this.OauthLoader = false;
+        this.toastr.success('User signed up successfully', 'Success');
+
+        this.router.navigateByUrl('/');
+      },
+      error: (error) => {
+        this.toastr.error(`${error.code}`, 'Error');
+        this.OauthLoader = false;
+      },
+    });
   }
 }
