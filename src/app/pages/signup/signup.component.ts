@@ -24,6 +24,7 @@ export class SignupComponent {
   isPasswordFocused = false;
   isPassword2Focused = false;
   isLoading!: boolean;
+  OauthLoader: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -73,5 +74,21 @@ export class SignupComponent {
       console.log(this.signUpForm.value);
       this.isLoading = false;
     }
+  }
+
+  signInWithGoogle(): void {
+    this.OauthLoader = true;
+    this.authService.loginWithGoogle().subscribe({
+      next: () => {
+        this.OauthLoader = false;
+        this.toastr.success('User signed up successfully', 'Success');
+
+        this.router.navigateByUrl('/');
+      },
+      error: (error) => {
+        this.toastr.error(`${error.code}`, 'Error');
+        this.OauthLoader = false;
+      },
+    });
   }
 }

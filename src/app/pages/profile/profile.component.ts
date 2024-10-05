@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { BlogService } from '../../services/blog.service';
-import { BlogResponse, CurrentUser } from '../../models';
+import { BlogResponse, Comment, CurrentUser } from '../../models';
 import { User } from 'firebase/auth';
 
 @Component({
@@ -12,6 +12,7 @@ import { User } from 'firebase/auth';
 export class ProfileComponent {
   currentUser!: CurrentUser;
   isLoaded: boolean = false;
+  comments: Comment[] = [];
 
   constructor(
     private router: Router,
@@ -21,25 +22,6 @@ export class ProfileComponent {
 
   data!: BlogResponse[];
   isLoading: boolean = true;
-
-  user = {
-    name: 'John Doe',
-    profilePicture: 'assets/profile-pic.jpg',
-    email: 'johndoe@example.com',
-    phone: '123-456-7890',
-    location: 'New York, USA',
-    dob: '1990-05-15',
-    status: 'Online',
-    bio: 'Enthusiastic developer with a passion for building great apps.',
-    postsCount: 45,
-    likesCount: 120,
-    commentsCount: 89,
-    recentPosts: [
-      'Completed a new blog post on Angular directives!',
-      'Loving the new Firebase integration in my project.',
-      'Had an insightful discussion on web performance optimization.',
-    ],
-  };
 
   ngOnInit() {
     this.isLoaded = true;
@@ -69,6 +51,14 @@ export class ProfileComponent {
       this.data =
         data.filter((blog) => blog.userEmail === this.currentUser.email) || [];
       this.isLoading = false;
+    });
+  }
+
+  getAllComments() {
+    this.data.forEach((blog) => {
+      blog?.comments?.forEach((comment) => {
+        this.comments.push(comment);
+      });
     });
   }
 

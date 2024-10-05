@@ -16,6 +16,7 @@ export interface BlogResponse {
   userId: string;
   userName: string;
   userEmail: string;
+  comments?: Comment[];
 }
 
 export interface CurrentUser {

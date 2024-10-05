@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   User,
   user,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from '@angular/fire/auth';
 import { from, Observable } from 'rxjs';
 import { CurrentUser } from '../../models';
@@ -64,6 +66,13 @@ export class AuthService {
       console.log('value', this.currentUserSignal());
       return this.currentUserSignal();
     });
+  }
+
+  loginWithGoogle(): Observable<void> {
+    const provider = new GoogleAuthProvider();
+    const promise = signInWithPopup(this.firebaseAuth, provider).then(() => {});
+
+    return from(promise);
   }
 
   logout(): Observable<void> {

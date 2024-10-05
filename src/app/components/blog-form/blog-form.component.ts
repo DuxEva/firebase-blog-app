@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Blog, CurrentUser } from '../../models';
+import { Blog, Comment, CurrentUser } from '../../models';
 import { BlogService } from '../../services/blog.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -16,6 +16,7 @@ export class BlogFormComponent implements OnInit {
   blogForm: FormGroup;
   owner!: CurrentUser;
   isActionLoading = false;
+  comments!: Comment[];
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +41,7 @@ export class BlogFormComponent implements OnInit {
   private loadBlogDataIfExists(): void {
     if (this.urlId) {
       this.blogService.getBlogById(this.urlId).subscribe((data) => {
+        this.comments = data.comments || [];
         this.blogForm.patchValue({
           title: data.title,
           content: data.content,
@@ -80,6 +82,7 @@ export class BlogFormComponent implements OnInit {
       userId: this.owner.uid,
       userName: this.owner.name,
       userEmail: this.owner.email,
+      comments: this.comments,
     };
   }
 
